@@ -215,8 +215,8 @@ interface SmtDrawerProps {
     isOpen: boolean;
     setDrawerIsOpen: Dispatch<SetStateAction<boolean>>;
     addErrorToast: (err: string) => void;
-    smtOptions: { argsType: boolean; customArgs: string };
-    setSmtOptions: Dispatch<SetStateAction<SmtDrawerProps['smtOptions']>>;
+    // smtOptions: { argsType: boolean; customArgs: string };
+    // setSmtOptions: Dispatch<SetStateAction<SmtDrawerProps['smtOptions']>>;
 }
 
 // TUTORIAL PROPS

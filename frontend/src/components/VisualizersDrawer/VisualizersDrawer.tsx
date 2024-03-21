@@ -20,15 +20,6 @@ const VisualizersDrawer: React.FC<DrawerProps> = ({ drawerIsOpen, setDrawerIsOpe
     const [tabID, setTabID] = useState('lm');
     const [resizeFlag, setResizeFlag] = useState([false, false]);
 
-    useEffect(() => {
-        // When drawer is initialized it focus the escape button
-        const bt = document
-            .getElementsByClassName('visualizers-drawer')[0]
-            .getElementsByClassName('bp3-button')[0] as HTMLElement;
-        bt.tabIndex = 1;
-        bt.focus();
-    }, []);
-
     const handleTabChange = (newTabId: string, _: any, e: any): void => {
         setTabID(newTabId);
         const newResizeFlag = [...resizeFlag];
