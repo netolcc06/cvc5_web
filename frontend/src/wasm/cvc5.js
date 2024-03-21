@@ -1,5 +1,5 @@
 var Module = (() => {
-    var _scriptDir = window.location.origin + '/proof-visualizer/';
+    var _scriptDir = window.location.origin + '/cvc5_web/';
 
     // This function is responsible for running the web assembly
     return function (Module) {
@@ -645,8 +645,8 @@ function intArrayFromString(stringy, dontAddNull, length) {
 }
 var TTY = {
     ttys: [],
-    init: function () {},
-    shutdown: function () {},
+    init: function () {return;},
+    shutdown: function () {return;},
     register: function (dev, ops) {
         TTY.ttys[dev] = {
             input: [],
@@ -2435,16 +2435,16 @@ var FS = {
                 }
                 return intArrayFromString(xhr.responseText || "", true)
             };
-            var lazyArray = this;
-            lazyArray.setDataGetter(chunkNum => {
+            //var lazyArray = this;
+            this.setDataGetter(chunkNum => {
                 var start = chunkNum * chunkSize;
                 var end = (chunkNum + 1) * chunkSize - 1;
                 end = Math.min(end, datalength - 1);
-                if (typeof lazyArray.chunks[chunkNum] == "undefined") {
-                    lazyArray.chunks[chunkNum] = doXHR(start, end)
+                if (typeof this.chunks[chunkNum] == "undefined") {
+                    this.chunks[chunkNum] = doXHR(start, end)
                 }
-                if (typeof lazyArray.chunks[chunkNum] == "undefined") throw new Error("doXHR failed!");
-                return lazyArray.chunks[chunkNum]
+                if (typeof this.chunks[chunkNum] == "undefined") throw new Error("doXHR failed!");
+                return this.chunks[chunkNum]
             });
             if (usesGzip || !datalength) {
                 chunkSize = datalength = 1;
@@ -2582,8 +2582,8 @@ var FS = {
     DB_VERSION: 20,
     DB_STORE_NAME: "FILE_DATA",
     saveFilesToDB: (paths, onload, onerror) => {
-        onload = onload || (() => {});
-        onerror = onerror || (() => {});
+        onload = onload || (() => {return;});
+        onerror = onerror || (() => {return;});
         var indexedDB = FS.indexedDB();
         try {
             var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION)
@@ -2623,8 +2623,8 @@ var FS = {
         openRequest.onerror = onerror
     },
     loadFilesFromDB: (paths, onload, onerror) => {
-        onload = onload || (() => {});
-        onerror = onerror || (() => {});
+        onload = onload || (() => {return;});
+        onerror = onerror || (() => {return;});
         var indexedDB = FS.indexedDB();
         try {
             var openRequest = indexedDB.open(FS.DB_NAME(), FS.DB_VERSION)

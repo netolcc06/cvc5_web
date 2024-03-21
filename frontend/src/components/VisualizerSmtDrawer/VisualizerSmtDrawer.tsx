@@ -67,8 +67,8 @@ const VisualizerSmtDrawer: React.FC<SmtDrawerProps> = ({
         tabIndex: 5,
     };
 
-    var on : "off" | "on" | "wordWrapColumn" | "bounded" = "on"
-    var off : "off" | "on" | "wordWrapColumn" | "bounded" = "off"
+    const on : "off" | "on" | "wordWrapColumn" | "bounded" = "on"
+    const off : "off" | "on" | "wordWrapColumn" | "bounded" = "off"
     const outputOptions = {
         theme: darkTheme ? 'vs-dark' : 'vs',
         tabIndex: 5,
@@ -197,7 +197,7 @@ const VisualizerSmtDrawer: React.FC<SmtDrawerProps> = ({
                                 // Only calls web assembly when there is some text on the code editor
                                 if (textRef.current.trim().length) {
                                     dispatch(setSpinner('cvc5'));
-                                    var inputTxt = textRef.current.replace(/(;(.)*|;(.)*\r\n|;(.)*\n|;(.)*\r|\r\n|\n|\r)/gm, "");
+                                    const inputTxt = textRef.current.replace(/(;(.)*|;(.)*\r\n|;(.)*\n|;(.)*\r|\r\n|\n|\r)/gm, "");
                                     console.log(inputTxt);
                                     const clausePattern = /^(\(check-sat\))+$/;
                                     const noClauses = inputTxt.replace(/\s+/g, '').match(clausePattern);
